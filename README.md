@@ -17,9 +17,29 @@ To be able able to run the tests, you should have `docker`  and `docker-compose`
 
 ## How to run the tests ?
 
+## Requirements Docker
+
+```
+sudo apt-get install ca-certificates curl gnupg lsb-release -y
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+```
+
+```
+docker_compose_version=$(wget -qO- https://api.github.com/repos/docker/compose/releases/latest | jq -r ".tag_name")
+sudo wget -O /usr/bin/docker-compose "https://github.com/docker/compose/releases/download/${docker_compose_version}/docker-compose-`uname -s`-`uname -m`"
+sudo chmod +x /usr/bin/docker-compose
+```
+
+```
+git clone https://github.com/thereisnspoon/CensorshipMeasurements.git
+```
+
 From the command line, enter the `Censorship_Measurements` folder by running the command
 ```
-  cd Censorship_Measurements
+cd CensorshipMeasurements
 ```
 
 and run in the command line (note, your `Docker` desktop app should be open at this point)
