@@ -20,17 +20,12 @@ To be able able to run the tests, you should have `docker`  and `docker-compose`
 ## Requirements Docker
 
 ```
-sudo apt-get install ca-certificates curl gnupg lsb-release -y
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io -y
-```
+sudo apt install apt-transport-https ca-certificates curl software-properties-common -y && 
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && 
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable" && 
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin && 
+sudo apt-get install docker-compose-plugin
 
-```
-docker_compose_version=$(wget -qO- https://api.github.com/repos/docker/compose/releases/latest | jq -r ".tag_name")
-sudo wget -O /usr/bin/docker-compose "https://github.com/docker/compose/releases/download/${docker_compose_version}/docker-compose-`uname -s`-`uname -m`"
-sudo chmod +x /usr/bin/docker-compose
 ```
 
 ```
